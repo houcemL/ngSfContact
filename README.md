@@ -42,13 +42,6 @@ following command:
 
     php composer.phar install
     
-Execute the following commands :
-
-    php app/console doctrine:database:create
-    php app/console doctrine:schema:update --force
-    
-Then Start play with the Demo :). http://yourIp/ngSfContact/web/contact
-
 2) Checking your System Configuration
 -------------------------------------
 
@@ -67,6 +60,13 @@ Access the `config.php` script from a browser:
     http://localhost/path/to/symfony/app/web/config.php
 
 If you get any warnings or recommendations, fix them before moving on.
+
+Then execute the following commands :
+
+    php app/console doctrine:database:create
+    php app/console doctrine:schema:update --force
+    
+Then Start play with the Demo :). http://yourIp/ngSfContact/web/contact
 
 3) Browsing the Demo Application
 --------------------------------

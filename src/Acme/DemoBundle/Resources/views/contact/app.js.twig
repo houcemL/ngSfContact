@@ -3,7 +3,8 @@
         $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
         /**
          * Route Provider.
-         * /
+         */
+         
         $routeProvider.
                 when('/', {
             templateUrl: 'ng-modals',
@@ -41,7 +42,7 @@
         };
         /**
          * Update Action.
-         * /
+         */
         $scope.update = function(contact) {
             $http({
                 method: 'POST',
@@ -54,14 +55,14 @@
         }
         /**
          * Show Action.
-         * /
+         */
         $scope.show = function(contact) {
             $scope.contact = contact;
             $("#mshow").modal();
         };
         /**
          * Delete Action.
-         * /
+         */
         $scope.del = function($event, contact) {
             $event.stopPropagation();
             var url = "{{ url('contact') }}" + contact.id + "/ng-delete";
@@ -82,7 +83,7 @@
         };
         /**
          * Add Action.
-         * / 
+         */ 
         $scope.add = function($event) {
             $event.stopPropagation();
             $http({
@@ -96,7 +97,7 @@
         };
         /**
          * Reload Action.
-         * /
+         */
         $scope.reload = function() {
             $scope.contacts = [];
             contactsF.load(function(data) {

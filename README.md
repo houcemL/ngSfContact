@@ -1,4 +1,4 @@
-Symfony Standard Edition
+Symfony Standard Edition With a simple Contact App Build with AngularJs.
 ========================
 
 Welcome to the Symfony Standard Edition - a fully-functional Symfony2
@@ -41,6 +41,13 @@ the necessary dependencies. Download composer (see above) and run the
 following command:
 
     php composer.phar install
+    
+Execute the following commands :
+
+    php app/console doctrine:database:create
+    php app/console doctrine:schema:update --force
+    
+Then Start play with the Demo :). http://yourIp/ngSfContact/web/contact
 
 2) Checking your System Configuration
 -------------------------------------
@@ -148,8 +155,8 @@ It comes pre-configured with the following bundles:
   * [**SensioGeneratorBundle**][13] (in dev/test env) - Adds code generation
     capabilities
 
-  * **AcmeDemoBundle** (in dev/test env) - A demo bundle with some example
-    code
+  * **AcmeDemoBundle** (in dev/test/prod env) - A demo bundle with some example
+    code : with Angularjs contact application.
 
 All libraries and bundles included in the Symfony Standard Edition are
 released under the MIT or BSD license.

@@ -1,6 +1,9 @@
 <script>
     var houcem = angular.module('AcmeDemo', ['ngRoute']).config(function($interpolateProvider, $routeProvider) {
         $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
+        /**
+         * Route Provider.
+         * /
         $routeProvider.
                 when('/', {
             templateUrl: 'ng-modals',
@@ -8,6 +11,7 @@
         });
     });
     /**
+     * Factory.
      * @param {type} param1
      * @param {type} param2
      */
@@ -18,14 +22,8 @@
             }
         };
     });
-    /**
-     * Routers 
-     * @param {type} param1
-     * @param {type} param2
-     */
-
-    /**
-     * Controllers
+     /**
+     * Controllers: Table Controller.
      *
      * @param {type} param1
      * @param {type} param2
@@ -34,10 +32,16 @@
         contactsF.load(function(data) {
             $scope.contacts = data;
         });
+        /**
+         * Edit Action.
+         **/
         $scope.edit = function(contact) {
             $scope.contact = contact;
             $("#medit").modal();
         };
+        /**
+         * Update Action.
+         * /
         $scope.update = function(contact) {
             $http({
                 method: 'POST',
@@ -48,10 +52,16 @@
                 $scope.state = "success";
             });
         }
+        /**
+         * Show Action.
+         * /
         $scope.show = function(contact) {
             $scope.contact = contact;
             $("#mshow").modal();
         };
+        /**
+         * Delete Action.
+         * /
         $scope.del = function($event, contact) {
             $event.stopPropagation();
             var url = "{{ url('contact') }}" + contact.id + "/ng-delete";
@@ -70,6 +80,9 @@
                 $scope.contacts.splice(index, 1);
             });
         };
+        /**
+         * Add Action.
+         * / 
         $scope.add = function($event) {
             $event.stopPropagation();
             $http({
@@ -81,6 +94,9 @@
                 $scope.contacts.push(d);
             });
         };
+        /**
+         * Reload Action.
+         * /
         $scope.reload = function() {
             $scope.contacts = [];
             contactsF.load(function(data) {

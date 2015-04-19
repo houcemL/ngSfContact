@@ -1,0 +1,33 @@
+contact:
+    pattern:  /
+    defaults: { _controller: "AcmeDemoBundle:contact:index" }
+    
+contact_json:
+    pattern:  /json
+    defaults: { _controller: "AcmeDemoBundle:contact:json" }
+
+contact_create:
+    pattern:  /create
+    defaults: { _controller: "AcmeDemoBundle:contact:create" }
+    requirements: { _method: post }
+    
+contact_ng_create:
+    pattern:  /ng-create
+    defaults: { _controller: "AcmeDemoBundle:contact:ngcreate" }
+    requirements: { _method: post }
+     
+contact_ng_update:
+    pattern:  /{id}/ng-update
+    defaults: { _controller: "AcmeDemoBundle:contact:ngupdate" }
+    requirements: { _method: post|put }
+    
+contact_ng_modals:
+    pattern:  /ng-modals
+    defaults:
+        _controller: FrameworkBundle:Template:template
+        template:    'AcmeDemoBundle:contact:modals.html.twig'
+
+contact_ng_delete:
+    pattern:  /{id}/ng-delete
+    defaults: { _controller: "AcmeDemoBundle:contact:delete" }
+    requirements: { _method: post|delete }

@@ -1,0 +1,94 @@
+<script>
+    var houcem = angular.module('AcmeDemo', ['ngRoute']).config(function($interpolateProvider, $routeProvider) {
+        $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
+        $routeProvider.
+                when('/', {
+            templateUrl: 'ng-modals',
+            controller: 'table'
+        });
+    });
+    /**
+     * @param {type} param1
+     * @param {type} param2
+     */
+    houcem.factory('contactsF', function($http) {
+        return {
+            load: function(Instructions) {
+                $http.get("{{ url('contact_json') }}").success(Instructions);
+            }
+        };
+    });
+    /**
+     * Routers 
+     * @param {type} param1
+     * @param {type} param2
+     */
+
+    /**
+     * Controllers
+     *
+     * @param {type} param1
+     * @param {type} param2
+     */
+    houcem.controller('table', function($scope, $http, contactsF) {
+        contactsF.load(function(data) {
+            $scope.contacts = data;
+        });
+        $scope.edit = function(contact) {
+            $scope.contact = contact;
+            $("#medit").modal();
+        };
+        $scope.update = function(contact) {
+            $http({
+                method: 'POST',
+                url: '{{ url("contact") }}' + contact.id + '/ng-update',
+                data: 'name=' + contact.name + '&mail=' + contact.mail + '&message=' + contact.message,
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }).success(function(d) {
+                $scope.state = "success";
+            });
+        }
+        $scope.show = function(contact) {
+            $scope.contact = contact;
+            $("#mshow").modal();
+        };
+        $scope.del = function($event, contact) {
+            $event.stopPropagation();
+            var url = "{{ url('contact') }}" + contact.id + "/ng-delete";
+            $http.post(url).success(function() {
+                var index = -1;
+                var arr = eval($scope.contacts);
+                for (var i = 0; i < arr.length; i++) {
+                    if (arr[i].id === contact.id) {
+                        index = i;
+                        break;
+                    }
+                }
+                if (index === -1) {
+                    alert("Something gone wrong");
+                }
+                $scope.contacts.splice(index, 1);
+            });
+        };
+        $scope.add = function($event) {
+            $event.stopPropagation();
+            $http({
+                method: 'POST',
+                url: '{{ url("contact_ng_create") }}',
+                data: 'name=' + $scope.name + '&mail=' + $scope.mail + '&message=' + $scope.message,
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }).success(function(d) {
+                $scope.contacts.push(d);
+            });
+        };
+        $scope.reload = function() {
+            $scope.contacts = [];
+            contactsF.load(function(data) {
+                $scope.contacts = data;
+            });
+        };
+    });
+    houcem.controller('bar', function($scope, $http, $sce, contactsF) {
+
+    });
+    </script>

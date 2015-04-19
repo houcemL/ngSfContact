@@ -1,0 +1,42 @@
+           <div class="modal fade" id="mshow" aria-hidden="true">
+                   <div class="modal-dialog">
+                     <div class="modal-content">
+                       <div class="modal-body">
+                       <table class="table table-bordered">
+                               <tr>
+                                  <td>Name:</td><td>{[{ contact.name }]}</td>
+                               </tr>
+                               <tr>
+                                    <td>Mail:</td><td>{[{ contact.mail }]}</td>
+                               </tr>
+                               <tr>
+                                    <td>Message:</td><td>{[{ contact.message }]}</td>
+                               </tr>
+                        </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal fade" id="medit" aria-hidden="true">
+                     <div class="modal-dialog">
+                         <div class="modal-content">
+                             <div class="modal-body">
+                                 <table><tr ng-class="{success:state}"><td>{[{ state }]}</td></tr></table>
+                                 <form>
+                                     <div class="form-group">
+                                         <label for="name">Name: </label><input  class="form-control"  id="name" type="text" ng-model="contact.name">
+                                     </div>
+                                     <div class="form-group">
+                                         <label for="mail">Mail: </label><input  class="form-control"  id="mail" type="email" ng-model="contact.mail">
+                                     </div>
+                                     <div class="form-group">
+                                         <label for="message">Message: </label><input  class="form-control"  id="message" type="textarea" ng-model="contact.message">
+                                     </div>
+                                     <button type="button" ng-click="update(contact)" class="btn btn-default">Edit</button>
+                                 </form>
+                              </div>
+                         </div>
+                     </div>
+                  </div>
+               
+{# empty Twig template #}

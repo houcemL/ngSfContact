@@ -1,0 +1,31 @@
+<html ng-app="AcmeDemo">
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    </head>
+    <body>
+            <div ng-controller="table" ng-model="contact" style="padding-top:30px">
+            
+            <div  class="jumbotron" style='
+                  border-radius: 5px;
+                  padding: 4px;
+                  margin-top: 30px;
+                  width: 35%;
+                  border: 1px solid;
+                  float: right;' ng-init="houcem='houcem'">                
+                <div  style="width:400px">
+                {% include 'AcmeDemoBundle:contact:new.html.twig' %}                
+                </div>
+                <div ng-view></div>
+                </div>
+                <button ng-click="reload()" class="btn btn-primary glyphicon glyphicon-refresh">Refrechir le tableau</button>
+            {% include 'AcmeDemoBundle:contact:ngIndex.html.twig' %}               
+            </div>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+            <script src="{{ asset('angular.min.js') }}"></script>
+            <script src="{{ asset('angular.min.js.map') }}"></script>
+            <script src="{{ asset('angular-route.min.js') }}"></script>
+            <script src="{{ asset('angular.min.js.map') }}"></script>
+            {% include 'AcmeDemoBundle:contact:app.js.twig' %}                       
+    </body>
+ </html>
